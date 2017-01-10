@@ -79,14 +79,10 @@ public class ListAdapter extends BaseAdapter {
     }
 
     private static class ViewHolder {
-
         private TextView holeLabel;
         private TextView strokeCount;
         private Button removeStrokeButton;
         private Button addStrokeButton;
-
-
-
     }
 
 }
