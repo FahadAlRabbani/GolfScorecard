@@ -7,25 +7,29 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import java.util.Locale;
+
 public class MainActivity extends ListActivity {
     private static final String PREFS_FILE = "me.fahadalrabbani.golfscorecard.preferences";
     private static final String KEY_STROKECOUNT = "KEY_STROKECOUNT";
-    private SharedPreferences mSharedPreferences;
+
     private SharedPreferences.Editor mEditor;
     private Hole[] mHoles = new Hole[18];
     private ListAdapter mListAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        SharedPreferences mSharedPreferences;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mSharedPreferences = getSharedPreferences(PREFS_FILE, Context.MODE_PRIVATE);
         mEditor = mSharedPreferences.edit();
+        mEditor.apply();
         int strokes = 0;
 
         for (int i = 0; i < mHoles.length; i++) {
             strokes = mSharedPreferences.getInt(KEY_STROKECOUNT + i, 0);
-            mHoles[i] = new Hole(String.format("Hole %d : ", i + 1), strokes);
+            mHoles[i] = new Hole(String.format(Locale.getDefault(), "Hole %d : ", i + 1), strokes);
         }
 
         mListAdapter = new ListAdapter(getApplicationContext(), mHoles);
