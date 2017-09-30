@@ -28,17 +28,17 @@ public class MainActivity extends ListActivity {
             mHoles[i] = new Hole(String.format("Hole %d : ", i + 1), strokes);
         }
 
-        mListAdapter = new ListAdapter(getApplicationContext(),mHoles);
+        mListAdapter = new ListAdapter(getApplicationContext(), mHoles);
         setListAdapter(mListAdapter);
-        
+
     }
 
     @Override
     protected void onPause() {
         super.onPause();
 
-        for (int i = 0; i < mHoles.length; i++){
-            mEditor.putInt(KEY_STROKECOUNT + i,mHoles[i].getStrokeCount());
+        for (int i = 0; i < mHoles.length; i++) {
+            mEditor.putInt(KEY_STROKECOUNT + i, mHoles[i].getStrokeCount());
         }
 
         mEditor.apply();
@@ -46,18 +46,18 @@ public class MainActivity extends ListActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main,menu);
+        getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        int id  = item.getItemId();
+        int id = item.getItemId();
 
-        if (id == R.id.action_clearstroke){
+        if (id == R.id.action_clearstroke) {
             mEditor.clear();
             mEditor.apply();
-            for (Hole hole:mHoles) {
+            for (Hole hole : mHoles) {
                 hole.setStrokeCount(0);
             }
             mListAdapter.notifyDataSetChanged();

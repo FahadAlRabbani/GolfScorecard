@@ -8,10 +8,10 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.util.Locale;
+
 /**
- *
  * Created by achernar on 24/11/2015.
- *
  */
 public class ListAdapter extends BaseAdapter {
 
@@ -43,27 +43,27 @@ public class ListAdapter extends BaseAdapter {
 
         final ViewHolder holder;
 
-        if (convertView == null){
-            convertView = LayoutInflater.from(mContext).inflate(R.layout.list_item,null);
+        if (convertView == null) {
+            convertView = LayoutInflater.from(mContext).inflate(R.layout.list_item, null);
             holder = new ViewHolder();
             holder.holeLabel = (TextView) convertView.findViewById(R.id.holeLabel);
             holder.strokeCount = (TextView) convertView.findViewById(R.id.strokeCount);
             holder.removeStrokeButton = (Button) convertView.findViewById(R.id.removeStrokeButton);
             holder.addStrokeButton = (Button) convertView.findViewById(R.id.addStrokeButton);
             convertView.setTag(holder);
-        } else{
+        } else {
             holder = (ViewHolder) convertView.getTag();
         }
 
         holder.holeLabel.setText(mHoles[position].getLabel());
-        holder.strokeCount.setText(String.format("%d", mHoles[position].getStrokeCount()));
+        holder.strokeCount.setText(String.format(Locale.getDefault(), "%d", mHoles[position].getStrokeCount()));
         holder.removeStrokeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 int updatedStrokeCount = mHoles[position].getStrokeCount() - 1;
                 if (updatedStrokeCount < 0) updatedStrokeCount = 0;
                 mHoles[position].setStrokeCount(updatedStrokeCount);
-                holder.strokeCount.setText(String.format("%d", updatedStrokeCount));
+                holder.strokeCount.setText(String.format(Locale.getDefault(), "%d", updatedStrokeCount));
             }
         });
         holder.addStrokeButton.setOnClickListener(new View.OnClickListener() {
@@ -71,7 +71,7 @@ public class ListAdapter extends BaseAdapter {
             public void onClick(View v) {
                 int updatedStrokeCount = mHoles[position].getStrokeCount() + 1;
                 mHoles[position].setStrokeCount(updatedStrokeCount);
-                holder.strokeCount.setText(String.format("%d", updatedStrokeCount));
+                holder.strokeCount.setText(String.format(Locale.getDefault(), "%d", updatedStrokeCount));
             }
         });
 
