@@ -3,7 +3,7 @@ package me.fahadalrabbani.golfscorecard;
 /**
  * Created by achernar on 23/11/2015.
  */
-public class Hole {
+class Hole {
     private String mLabel;
     private int mStrokeCount;
 
@@ -14,10 +14,6 @@ public class Hole {
 
     public String getLabel() {
         return mLabel;
-    }
-
-    public void setLabel(String label) {
-        mLabel = label;
     }
 
     public int getStrokeCount() {

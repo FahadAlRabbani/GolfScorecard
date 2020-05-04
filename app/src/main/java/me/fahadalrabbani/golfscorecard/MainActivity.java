@@ -14,7 +14,7 @@ public class MainActivity extends ListActivity {
     private static final String KEY_STROKECOUNT = "KEY_STROKECOUNT";
 
     private SharedPreferences.Editor mEditor;
-    private Hole[] mHoles = new Hole[18];
+    private final Hole[] mHoles = new Hole[18];
     private ListAdapter mListAdapter;
 
     @Override
@@ -25,7 +25,7 @@ public class MainActivity extends ListActivity {
         mSharedPreferences = getSharedPreferences(PREFS_FILE, Context.MODE_PRIVATE);
         mEditor = mSharedPreferences.edit();
         mEditor.apply();
-        int strokes = 0;
+        int strokes;
 
         for (int i = 0; i < mHoles.length; i++) {
             strokes = mSharedPreferences.getInt(KEY_STROKECOUNT + i, 0);
