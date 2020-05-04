@@ -19,12 +19,15 @@ public class MainActivity extends ListActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        SharedPreferences mSharedPreferences;
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
-        mSharedPreferences = getSharedPreferences(PREFS_FILE, Context.MODE_PRIVATE);
+
+        SharedPreferences mSharedPreferences = getSharedPreferences(PREFS_FILE, Context.MODE_PRIVATE);
+
         mEditor = mSharedPreferences.edit();
         mEditor.apply();
+
         int strokes;
 
         for (int i = 0; i < mHoles.length; i++) {
